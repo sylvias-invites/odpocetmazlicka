@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Odpočet pro mého mazlíčka</title>
+    <!-- Import písma Great Vibes z Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f4f7f5;
+            font-family: 'Montserrat', sans-serif;
+            color: #2c3e35;
+            padding: 20px;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            max-width: 800px;
+            width: 100%;
+        }
+
+        /* Sekvenční animace 4 fotek panáčka */
+        .character-animation-container {
+            position: relative;
+            width: 140px;
+            height: 140px;
+            margin-bottom: 15px;
+        }
+
+        .character-frame {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            opacity: 0;
+            transition: opacity 0.4s ease-in-out;
+        }
+
+        .character-frame.active {
+            opacity: 1;
+        }
+
+        /* Černý nadpis v psaném stylu Great Vibes */
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            color: #000000;
+            font-size: 3.5rem;
+            font-weight: 400;
+            margin-bottom: 30px;
+            line-height: 1.2;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Odpočet v eukalyptovém stylu */
+        .countdown {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .time-box {
+            background: linear-gradient(145deg, #5f8a75, #4a735e);
+            color: #ffffff;
+            padding: 20px 15px;
+            border-radius: 16px;
+            min-width: 110px;
+            box-shadow: 0 8px 20px rgba(95, 138, 117, 0.25);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+
+        .time-box:hover {
+            transform: translateY(-5deg);
+        }
+
+        .number {
+            font-size: 2.8rem;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #e2ede7;
+            font-weight: 600;
+        }
+
+        /* Styl pro vaši fotku pod odpočtem */
+        .user-photo-container {
+            max-width: 220px;
+            width: 100%;
+        }
+
+        .user-photo {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.1));
+        }
+
+        /* Mobilní přizpůsobení */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            .countdown {
+                gap: 10px;
+                margin-bottom: 30px;
+            }
+            .time-box {
+                min-width: 75px;
+                padding: 15px 10px;
+            }
+            .number {
+                font-size: 2rem;
+            }
+            .label {
+                font-size: 0.7rem;
+            }
+            .character-animation-container {
+                width: 110px;
+                height: 110px;
+            }
+            .user-photo-container {
+                max-width: 160px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- 1. Střídající se 4 fotky panáčka nad nadpisem -->
+        <div class="character-animation-container">
+            <img src="panacek1.png" alt="Panáček 1" class="character-frame active">
+            <img src="panacek2.png" alt="Panáček 2" class="character-frame">
+            <img src="panacek3.png" alt="Panáček 3" class="character-frame">
+            <img src="panacek4.png" alt="Panáček 4" class="character-frame">
+        </div>
+
+        <!-- 2. Černý nadpis Great Vibes -->
+        <h1>Kdy mě pomazlí můj mazlíček?</h1>
+
+        <!-- 3. Odpočet (dny, hodiny, minuty, sekundy) -->
+        <div class="countdown">
+            <div class="time-box">
+                <span class="number" id="days">00</span>
+                <span class="label">Dní</span>
+            </div>
+            <div class="time-box">
+                <span class="number" id="hours">00</span>
+                <span class="label">Hodin</span>
+            </div>
+            <div class="time-box">
+                <span class="number" id="minutes">00</span>
+                <span class="label">Minut</span>
+            </div>
+            <div class="time-box">
+                <span class="number" id="seconds">00</span>
+                <span class="label">Sekund</span>
+            </div>
+        </div>
+
+        <!-- 4. Vaše fotka bez pozadí pod odpočtem -->
+        <div class="user-photo-container">
+            <img src="foto.png" alt="Moje fotka" class="user-photo">
+        </div>
+    </div>
+
+    <script>
+        // Animace střídání 4 fotek panáčka
+        const frames = document.querySelectorAll('.character-frame');
+        let currentFrameIndex = 0;
+
+        function nextFrame() {
+            frames[currentFrameIndex].classList.remove('active');
+            currentFrameIndex = (currentFrameIndex + 1) % frames.length;
+            frames[currentFrameIndex].classList.add('active');
+        }
+
+        // Změna fotky každé 2 sekundy (2000 ms)
+        setInterval(nextFrame, 2000);
+
+        // Cílové datum: 11. prosince 2026, 00:00:00
+        const targetDate = new Date('2026-12-11T00:00:00').getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const difference = targetDate - now;
+
+            if (difference > 0) {
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+                document.getElementById('days').textContent = String(days).padStart(2, '0');
+                document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+                document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+                document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+            } else {
+                document.getElementById('days').textContent = '00';
+                document.getElementById('hours').textContent = '00';
+                document.getElementById('minutes').textContent = '00';
+                document.getElementById('seconds').textContent = '00';
+            }
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
