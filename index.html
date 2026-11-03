@@ -24,7 +24,7 @@
             background-color: #f4f7f5;
             font-family: 'Montserrat', sans-serif;
             color: #2c3e35;
-            padding: 20px;
+            padding: 10px;
         }
 
         .container {
@@ -36,119 +36,160 @@
             width: 100%;
         }
 
-        /* Sekvenční animace 4 fotek panáčka */
-  .character-animation-container {
-    position: relative;
-    width: 250px;
-    height: 250px;
-    margin-bottom: -10px;
-    background-color: transparent; /* Zabrání blikání pozadí */
-    }
+        /* Sekvenční animace 4 fotek panáčka - posunuto blízko k nadpisu */
+        .character-animation-container {
+            position: relative;
+            width: 220px;
+            height: 220px;
+            margin-bottom: -25px; 
+            background-color: transparent; 
+        }
 
-   .character-frame {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      display: none;    
-   } 
+        .character-frame {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: none;    
+        }
 
-    .character-frame.active {
-        display: block;
-    }
+        .character-frame.active {
+            display: block;
+        }
 
         /* Černý nadpis v psaném stylu Great Vibes */
         h1 {
             font-family: 'Great Vibes', cursive;
             color: #000000;
-            font-size: 3.5rem;
+            font-size: 2.8rem;
             font-weight: 400;
-            margin-bottom: 30px;
-            line-height: 1.2;
+            margin-bottom: 10px;
+            line-height: 1.1;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
         }
 
-        /* Odpočet v eukalyptovém stylu */
+        /* Společný obal pro odpočet a datum pod ním, aby byly blízko sebe */
+        .countdown-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        /* Malý text s datem pod odpočtem */
+        .target-date-text {
+            font-size: 0.8rem;
+            color: #5f8a75;
+            font-weight: 600;
+            margin-top: 4px;
+        }
+
+        /* První odpočet (plný zelený) */
         .countdown {
             display: flex;
-            gap: 15px;
+            gap: 8px;
             justify-content: center;
             flex-wrap: wrap;
-            margin-bottom: 40px;
         }
 
         .time-box {
             background: linear-gradient(145deg, #5f8a75, #4a735e);
             color: #ffffff;
-            padding: 20px 15px;
-            border-radius: 16px;
-            min-width: 110px;
-            box-shadow: 0 8px 20px rgba(95, 138, 117, 0.25);
+            padding: 10px 8px;
+            border-radius: 12px;
+            min-width: 75px;
+            box-shadow: 0 4px 15px rgba(95, 138, 117, 0.2);
             display: flex;
             flex-direction: column;
             align-items: center;
-            transition: transform 0.3s ease;
-        }
-
-        .time-box:hover {
-            transform: translateY(-5deg);
         }
 
         .number {
-            font-size: 2.8rem;
+            font-size: 1.9rem;
             font-weight: 700;
             line-height: 1;
-            margin-bottom: 8px;
+            margin-bottom: 4px;
         }
 
         .label {
-            font-size: 0.85rem;
+            font-size: 0.7rem;
             text-transform: uppercase;
             letter-spacing: 1px;
             color: #e2ede7;
             font-weight: 600;
         }
 
-        /* Styl pro vaši fotku pod odpočtem */
+        /* Styl pro vaši fotku pod prvním odpočtem */
         .user-photo-container {
-            max-width: 220px;
+            max-width: 140px;
             width: 100%;
+            margin-bottom: -5px; 
         }
 
         .user-photo {
             width: 100%;
             height: auto;
             display: block;
-            filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.1));
+            filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.1));
+        }
+
+        /* Druhý odpočet: bílá výplň, zelené ohraničení, zelená čísla */
+        .countdown-outline {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .time-box-outline {
+            background: #ffffff;
+            border: 2px solid #5f8a75;
+            color: #5f8a75;
+            padding: 10px 8px;
+            border-radius: 12px;
+            min-width: 75px;
+            box-shadow: 0 4px 15px rgba(95, 138, 117, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .time-box-outline .number {
+            color: #5f8a75; 
+        }
+
+        .time-box-outline .label {
+            color: #4a735e; 
         }
 
         /* Mobilní přizpůsobení */
         @media (max-width: 600px) {
             h1 {
-                font-size: 2.5rem;
+                font-size: 2.2rem;
+                margin-bottom: 8px;
             }
-            .countdown {
-                gap: 10px;
-                margin-bottom: 30px;
+            .countdown-wrapper {
+                margin-bottom: 12px;
             }
-            .time-box {
-                min-width: 75px;
-                padding: 15px 10px;
+            .time-box, .time-box-outline {
+                min-width: 65px;
+                padding: 8px 5px;
             }
             .number {
-                font-size: 2rem;
+                font-size: 1.5rem;
             }
             .label {
-                font-size: 0.7rem;
+                font-size: 0.6rem;
             }
             .character-animation-container {
-                width: 250px;
-                height: 250px;
+                width: 150px;
+                height: 150px;
+                margin-bottom: -15px;
             }
             .user-photo-container {
-                max-width: 160px;
+                max-width: 110px;
             }
         }
     </style>
@@ -164,80 +205,116 @@
             <img src="panacek4.png" alt="Panáček 4" class="character-frame">
         </div>
 
-        <!-- 2. Černý nadpis Great Vibes -->
-        <h1>Kdy mě pomazlí můj mazlíček?</h1>
+        <!-- 2. První nadpis Great Vibes -->
+        <h1>Kdy mě pomazlí můj mazlíček:</h1>
 
-        <!-- 3. Odpočet (dny, hodiny, minuty, sekundy) -->
-        <div class="countdown">
-            <div class="time-box">
-                <span class="number" id="days">00</span>
-                <span class="label">Dní</span>
+        <!-- 3. První odpočet + datum v závorkati pod ním -->
+        <div class="countdown-wrapper">
+            <div class="countdown">
+                <div class="time-box">
+                    <span class="number" id="days1">00</span>
+                    <span class="label">Dní</span>
+                </div>
+                <div class="time-box">
+                    <span class="number" id="hours1">00</span>
+                    <span class="label">Hodin</span>
+                </div>
+                <div class="time-box">
+                    <span class="number" id="minutes1">00</span>
+                    <span class="label">Minut</span>
+                </div>
+                <div class="time-box">
+                    <span class="number" id="seconds1">00</span>
+                    <span class="label">Sekund</span>
+                </div>
             </div>
-            <div class="time-box">
-                <span class="number" id="hours">00</span>
-                <span class="label">Hodin</span>
-            </div>
-            <div class="time-box">
-                <span class="number" id="minutes">00</span>
-                <span class="label">Minut</span>
-            </div>
-            <div class="time-box">
-                <span class="number" id="seconds">00</span>
-                <span class="label">Sekund</span>
-            </div>
+            <div class="target-date-text">(11. 11. 2026)</div>
         </div>
 
-        <!-- 4. Vaše fotka bez pozadí pod odpočtem -->
+        <!-- 4. Vaše fotka bez pozadí -->
         <div class="user-photo-container">
             <img src="foto.png" alt="Moje fotka" class="user-photo">
+        </div>
+
+        <!-- 5. Druhý nadpis Great Vibes -->
+        <h1>Kdy budou mazlíčczony spolu doma:</h1>
+
+        <!-- 6. Druhý odpočet + datum v závorkati pod ním -->
+        <div class="countdown-wrapper">
+            <div class="countdown-outline">
+                <div class="time-box-outline">
+                    <span class="number" id="days2">00</span>
+                    <span class="label">Dní</span>
+                </div>
+                <div class="time-box-outline">
+                    <span class="number" id="hours2">00</span>
+                    <span class="label">Hodin</span>
+                </div>
+                <div class="time-box-outline">
+                    <span class="number" id="minutes2">00</span>
+                    <span class="label">Minut</span>
+                </div>
+                <div class="time-box-outline">
+                    <span class="number" id="seconds2">00</span>
+                    <span class="label">Sekund</span>
+                </div>
+            </div>
+            <div class="target-date-text">(11. 12. 2026)</div>
         </div>
     </div>
 
     <script>
-     const frames = document.querySelectorAll('.character-frame');
-let currentFrameIndex = 0;
+        // Animace panáčka
+        const frames = document.querySelectorAll('.character-frame');
+        let currentFrameIndex = 0;
 
-function nextFrame() {
-    // Skryjeme aktuální snímek
-    frames[currentFrameIndex].classList.remove('active');
-    
-    // Posuneme se na další snímek
-    currentFrameIndex = (currentFrameIndex + 1) % frames.length;
-    
-    // Okamžitě zaktivujeme nový snímek
-    frames[currentFrameIndex].classList.add('active');
-}
+        function nextFrame() {
+            frames[currentFrameIndex].classList.remove('active');
+            currentFrameIndex = (currentFrameIndex + 1) % frames.length;
+            frames[currentFrameIndex].classList.add('active');
+        }
+        setInterval(nextFrame, 200);
 
-// Rychlost střídání (např. 200 ms = 0.2 sekundy, upravte podle potřeby)
-setInterval(nextFrame, 200);
+        // Cílové datum pro 1. odpočet: 11. listopadu 2026, 00:00:00
+        const targetDate1 = new Date('2026-11-11T00:00:00').getTime();
+        
+        // Cílové datum pro 2. odpočet: 11. prosince 2026, 00:00:00
+        const targetDate2 = new Date('2026-12-11T00:00:00').getTime();
 
-        // Cílové datum: 11. listopadu 2026, 00:00:00
-        const targetDate = new Date('2026-11-11T00:00:00').getTime();
-
-        function updateCountdown() {
+        function updateCountdowns() {
             const now = new Date().getTime();
-            const difference = targetDate - now;
 
-            if (difference > 0) {
-                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-
-                document.getElementById('days').textContent = String(days).padStart(2, '0');
-                document.getElementById('hours').textContent = String(hours).padStart(2, '0');
-                document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
-                document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+            // První odpočet
+            const diff1 = targetDate1 - now;
+            if (diff1 > 0) {
+                document.getElementById('days1').textContent = String(Math.floor(diff1 / (1000 * 60 * 60 * 24))).padStart(2, '0');
+                document.getElementById('hours1').textContent = String(Math.floor((diff1 % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+                document.getElementById('minutes1').textContent = String(Math.floor((diff1 % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+                document.getElementById('seconds1').textContent = String(Math.floor((diff1 % (1000 * 60)) / 1000)).padStart(2, '0');
             } else {
-                document.getElementById('days').textContent = '00';
-                document.getElementById('hours').textContent = '00';
-                document.getElementById('minutes').textContent = '00';
-                document.getElementById('seconds').textContent = '00';
+                document.getElementById('days1').textContent = '00';
+                document.getElementById('hours1').textContent = '00';
+                document.getElementById('minutes1').textContent = '00';
+                document.getElementById('seconds1').textContent = '00';
+            }
+
+            // Druhý odpočet
+            const diff2 = targetDate2 - now;
+            if (diff2 > 0) {
+                document.getElementById('days2').textContent = String(Math.floor(diff2 / (1000 * 60 * 60 * 24))).padStart(2, '0');
+                document.getElementById('hours2').textContent = String(Math.floor((diff2 % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+                document.getElementById('minutes2').textContent = String(Math.floor((diff2 % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+                document.getElementById('seconds2').textContent = String(Math.floor((diff2 % (1000 * 60)) / 1000)).padStart(2, '0');
+            } else {
+                document.getElementById('days2').textContent = '00';
+                document.getElementById('hours2').textContent = '00';
+                document.getElementById('minutes2').textContent = '00';
+                document.getElementById('seconds2').textContent = '00';
             }
         }
 
-        updateCountdown();
-        setInterval(updateCountdown, 1000);
+        updateCountdowns();
+        setInterval(updateCountdowns, 1000);
     </script>
 </body>
 </html>
