@@ -39,9 +39,9 @@
         /* Sekvenční animace 4 fotek panáčka */
   .character-animation-container {
     position: relative;
-    width: 200px;
-    height: 2000px;
-    margin-bottom: 15px;
+    width: 250px;
+    height: 250px;
+    margin-bottom: -10px;
     background-color: transparent; /* Zabrání blikání pozadí */
     }
 
@@ -52,13 +52,11 @@
       width: 100%;
       height: 100%;
       object-fit: contain;
-      opacity: 0;
-      transition: opacity 0.2s ease; /* Plynulý přechod */
-      will-change: opacity;
-    } 
+      display: none;    
+   } 
 
     .character-frame.active {
-        opacity: 1;
+        display: block;
     }
 
         /* Černý nadpis v psaném stylu Great Vibes */
@@ -146,8 +144,8 @@
                 font-size: 0.7rem;
             }
             .character-animation-container {
-                width: 110px;
-                height: 110px;
+                width: 250px;
+                height: 250px;
             }
             .user-photo-container {
                 max-width: 160px;
@@ -196,26 +194,25 @@
     </div>
 
     <script>
-     // Plynulé střídání snímků bez problikávání
-const frames = document.querySelectorAll('.character-frame');
+     const frames = document.querySelectorAll('.character-frame');
 let currentFrameIndex = 0;
 
 function nextFrame() {
-    let nextIndex = (currentFrameIndex + 1) % frames.length;
-    
-    // Nový snímek se zviditelní
-    frames[nextIndex].classList.add('active');
-    // Starý snímek zneviditelníme až po něm
+    // Skryjeme aktuální snímek
     frames[currentFrameIndex].classList.remove('active');
     
-    currentFrameIndex = nextIndex;
+    // Posuneme se na další snímek
+    currentFrameIndex = (currentFrameIndex + 1) % frames.length;
+    
+    // Okamžitě zaktivujeme nový snímek
+    frames[currentFrameIndex].classList.add('active');
 }
 
-// Rychlost přechodu (např. každých 1500 ms = 1.5 sekundy)
-setInterval(nextFrame, 1500);
+// Rychlost střídání (např. 200 ms = 0.2 sekundy, upravte podle potřeby)
+setInterval(nextFrame, 200);
 
-        // Cílové datum: 11. prosince 2026, 00:00:00
-        const targetDate = new Date('2026-12-11T00:00:00').getTime();
+        // Cílové datum: 11. listopadu 2026, 00:00:00
+        const targetDate = new Date('2026-11-11T00:00:00').getTime();
 
         function updateCountdown() {
             const now = new Date().getTime();
