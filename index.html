@@ -165,11 +165,24 @@
             color: #4a735e; 
         }
 
+        /* Styl pro dělicí obrázek s srdíčkem */
+.divider-container {
+    max-width: 250px;
+    width: 80%;
+    margin: 5px auto 10px auto;
+}
+
+.divider-img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+        
         /* Mobilní přizpůsobení */
         @media (max-width: 600px) {
             h1 {
                 font-size: 1.8rem;
-                margin-bottom: 5px;
+                margin-bottom: 10px;
             }
             .countdown-wrapper {
                 margin-bottom: 12px;
@@ -230,6 +243,11 @@
                 </div>
             </div>
             <div class="target-date-text">(11. 11. 2026)</div>
+        </div>
+
+        <!-- NOVÉ: Dělicí čára se srdíčkem -->
+        <div class="divider-container">
+            <img src="cara.png" alt="Oddělovač" class="divider-img">
         </div>
 
         <!-- 4. Vaše fotka bez pozadí -->
