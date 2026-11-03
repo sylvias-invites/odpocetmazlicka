@@ -37,27 +37,29 @@
         }
 
         /* Sekvenční animace 4 fotek panáčka */
-        .character-animation-container {
-            position: relative;
-            width: 140px;
-            height: 140px;
-            margin-bottom: 15px;
-        }
+  .character-animation-container {
+    position: relative;
+    width: 200px;
+    height: 2000px;
+    margin-bottom: 15px;
+    background-color: transparent; /* Zabrání blikání pozadí */
+    }
 
-        .character-frame {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            opacity: 0;
-            transition: opacity 0.4s ease-in-out;
-        }
+   .character-frame {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      opacity: 0;
+      transition: opacity 0.2s ease; /* Plynulý přechod */
+      will-change: opacity;
+    } 
 
-        .character-frame.active {
-            opacity: 1;
-        }
+    .character-frame.active {
+        opacity: 1;
+    }
 
         /* Černý nadpis v psaném stylu Great Vibes */
         h1 {
@@ -194,18 +196,23 @@
     </div>
 
     <script>
-        // Animace střídání 4 fotek panáčka
-        const frames = document.querySelectorAll('.character-frame');
-        let currentFrameIndex = 0;
+     // Plynulé střídání snímků bez problikávání
+const frames = document.querySelectorAll('.character-frame');
+let currentFrameIndex = 0;
 
-        function nextFrame() {
-            frames[currentFrameIndex].classList.remove('active');
-            currentFrameIndex = (currentFrameIndex + 1) % frames.length;
-            frames[currentFrameIndex].classList.add('active');
-        }
+function nextFrame() {
+    let nextIndex = (currentFrameIndex + 1) % frames.length;
+    
+    // Nový snímek se zviditelní
+    frames[nextIndex].classList.add('active');
+    // Starý snímek zneviditelníme až po něm
+    frames[currentFrameIndex].classList.remove('active');
+    
+    currentFrameIndex = nextIndex;
+}
 
-        // Změna fotky každé 2 sekundy (2000 ms)
-        setInterval(nextFrame, 2000);
+// Rychlost přechodu (např. každých 1500 ms = 1.5 sekundy)
+setInterval(nextFrame, 1500);
 
         // Cílové datum: 11. prosince 2026, 00:00:00
         const targetDate = new Date('2026-12-11T00:00:00').getTime();
